@@ -16,22 +16,52 @@ body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--bg);colo
 /* ── PAGE WRAPPER ── */
 .page{max-width:960px;margin:0 auto}
 
+/* ── PROGRESS BAR ── */
+#nprogress{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;pointer-events:none;
+  background:var(--grad);transform-origin:left;transform:scaleX(0);transition:transform .25s ease,opacity .4s ease;opacity:0}
+#nprogress.running{opacity:1}
+
 /* ── NAV ── */
 .nav{
   position:sticky;top:0;z-index:100;
   display:flex;align-items:center;padding:16px 32px;
-  background:rgba(249,248,245,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(249,248,245,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border-bottom:1px solid var(--rule);
   transition:box-shadow .3s;
 }
 .nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.08)}
 .wm{font-size:20px;font-weight:800;letter-spacing:-.03em;text-decoration:none;
-  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.nav-links{margin-left:auto;display:flex;gap:22px;font-size:13px;font-weight:500}
-.nav-links a{opacity:.7;text-decoration:none;color:var(--ink);transition:opacity .2s}
-.nav-links a:hover{opacity:1}
-.nav-links a.cur{opacity:1;font-weight:700;
-  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  transition:opacity .2s}
+.wm:hover{opacity:.8}
+.nav-links{margin-left:auto;display:flex;gap:4px;font-size:13px;font-weight:500;position:relative}
+.nav-links a{
+  opacity:.65;text-decoration:none;color:var(--ink);
+  padding:6px 12px;border-radius:8px;
+  transition:opacity .2s,background .2s,color .2s;
+  position:relative;
+}
+.nav-links a:hover{opacity:1;background:rgba(0,0,0,.05)}
+.nav-links a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.nav-links a.cur{
+  opacity:1;font-weight:700;
+  background:linear-gradient(135deg,rgba(34,211,238,.12),rgba(168,85,247,.12));
+  -webkit-text-fill-color:transparent;
+  background-clip:text;-webkit-background-clip:text;
+  /* layered: pill bg + text gradient */
+}
+.nav-links a.cur::after{
+  content:'';position:absolute;inset:0;border-radius:8px;
+  background:linear-gradient(135deg,rgba(34,211,238,.14),rgba(168,85,247,.14));
+  pointer-events:none;
+}
+/* sliding pill indicator */
+.nav-pill{
+  position:absolute;border-radius:8px;
+  background:linear-gradient(135deg,rgba(34,211,238,.15),rgba(168,85,247,.15));
+  transition:left .28s cubic-bezier(.4,0,.2,1),width .28s cubic-bezier(.4,0,.2,1),top .28s,height .28s;
+  pointer-events:none;z-index:-1;
+}
 
 /* ── HERO (dark) ── */
 .hero-dark{
@@ -429,6 +459,11 @@ ol.test li::before{content:counter(t);position:absolute;left:0;top:11px;width:26
   .email-cap{flex-direction:column}
   .flow{flex-direction:column}
 }
+
+/* ── CONTENT TRANSITION ── */
+#content{transition:opacity .28s ease,transform .28s ease;will-change:opacity,transform}
+#content.out{opacity:0;transform:translateY(12px)}
+#content.in{opacity:1;transform:none}
 
 /* ── MOBILE BURGER ── */
 .nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:16px}
