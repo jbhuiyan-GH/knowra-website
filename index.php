@@ -31,6 +31,18 @@ $page_titles = [
 $page_title   = $page_titles[$view] ?? SITE_NAME;
 $current_path = $uri;
 
+$is_ajax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
+// AJAX: return only the view content + page title
+if ($is_ajax) {
+    header('Content-Type: application/json');
+    ob_start();
+    require $view_file;
+    $html = ob_get_clean();
+    echo json_encode(['title' => $page_title, 'html' => $html, 'view' => $view]);
+    exit;
+}
+
 // Honest guide has its own layout
 if ($view === 'honest_guide') {
     require $view_file;
@@ -38,5 +50,7 @@ if ($view === 'honest_guide') {
 }
 
 require __DIR__ . '/includes/header.php';
+echo '<div id="content">';
 require $view_file;
+echo '</div>';
 require __DIR__ . '/includes/footer.php';
