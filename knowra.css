@@ -430,5 +430,23 @@ ol.test li::before{content:counter(t);position:absolute;left:0;top:11px;width:26
   .flow{flex-direction:column}
 }
 
-/* ── SHARED JS SNIPPET ── */
-/* (included via <script> tag in each page) */
+/* ── MOBILE BURGER ── */
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:16px}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;background:rgba(249,248,245,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule);padding:12px 20px 20px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--rule2)}
+.mobile-menu a.cur{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
+@media(max-width:768px){.nav-burger{display:flex}.nav-links{display:none}}
+
+/* ── FORM FEEDBACK ── */
+.form-success{text-align:center;padding:48px 24px;border:1px solid rgba(34,211,238,.2);border-radius:16px;background:linear-gradient(135deg,rgba(34,211,238,.06),rgba(168,85,247,.06))}
+.form-success .fs-icon{font-size:40px;margin-bottom:16px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.form-success h3{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.form-success p{font-family:'Newsreader',Georgia,serif;font-size:17px;color:var(--muted)}
+.form-errors{background:rgba(249,115,22,.07);border:1.5px solid var(--orange);border-radius:10px;padding:14px 18px;margin-bottom:20px}
+.form-errors p{font-size:14px;color:var(--orange);font-weight:600;margin-bottom:4px}
+.form-errors p:last-child{margin-bottom:0}

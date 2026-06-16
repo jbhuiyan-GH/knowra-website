@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?= htmlspecialchars($page_title) ?></title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/knowra.css">
+<style>.guide-page{max-width:720px;margin:0 auto;padding:0 28px 60px}@media(max-width:480px){.guide-page{padding:0 18px 44px}}</style>
+</head>
+<body>
+<div class="guide-page">
+  <div class="mast">
+    <a class="wm" href="/">KNOWRA</a>
+    <div class="tag">Free guide</div>
+  </div>
+  <div class="guide-title reveal">
+    <h1>The Honest Guide to AI for Bangladeshi Business</h1>
+    <p class="sub">What it can do, what it cannot, and how to begin without risking what you have built.</p>
+    <p class="aud">Written for middle and senior managers at medium and large companies in Bangladesh.</p>
+  </div>
+  <div class="opener reveal">
+    <p>This is not a sales pitch. It will not tell you that AI changes everything.</p>
+    <p>A lot of what you read about AI is hype. This is the plain version. By the end you will know where AI genuinely helps a company like yours, where it cannot be trusted, what the new data laws mean for you, and one safe step you can take this month.</p>
+    <p>If AI is not the right answer for a problem you have, we will say so. That is the whole idea behind this guide.</p>
+  </div>
+  <?php
+  $sections = [
+    ['num'=>'01','title'=>'Where things actually stand','content'=>'<p>PwC surveyed 45 Bangladeshi CEOs between September and November 2025. The picture is honest and useful.</p><p>One in five say AI has boosted their revenue. One in four say it has lowered their costs. So the gains are real for some.</p><p>But adoption across the whole company is still rare. Fewer than one in five CEOs believe their AI tools can even reach all the relevant company data. About 40 percent have a clear AI plan. The rest are guessing.</p><p>The global numbers tell the same story. Most companies that tried AI have not yet seen a real financial return. The few that have are the ones that built proper foundations first, with clear rules and clean data.</p><p>The lesson is simple. AI rewards the companies that start small, do it right, and keep a person in control. It punishes the ones that rush.</p><p class="guide-src">Source: PwC 29th CEO Survey, Bangladesh Edition, 2026.</p>'],
+    ['num'=>'02','title'=>'Where AI genuinely helps','content'=>'<p>AI is good at one kind of work. It reads and writes language fast, and it turns messy input into clean output. That covers a large part of an office day.</p><p>Here is what that looks like in four sectors, told as before and after.</p><h3>Apparel and textiles</h3><div class="guide-ba"><div class="g-row"><div class="k">Before</div><p>A buyer in California sends a tech pack and asks for an FOB quote. Your merchandiser reads it, emails suppliers for fabric and trim prices, waits, builds a costing by hand, and sends a quote a week later. By then the buyer has often moved on.</p></div><div class="g-row after"><div class="k">After</div><p>The tool reads the tech pack, pulls costs from your own rate tables, and drafts a costing the same day. A merchandiser checks the numbers against the real rates and signs. The quote goes out in hours.</p></div><span class="xhonest">The limit: the tool never invents a price. It uses only your rate tables, and a person signs every quote before it leaves.</span></div><h3>Financial services and audit</h3><div class="guide-ba"><div class="g-row"><div class="k">Before</div><p>A director gets 200 pages of quarterly accounts before a board meeting. There is no time to read it. He trusts management, or pays for a long review.</p></div><div class="g-row after"><div class="k">After</div><p>AI produces a two-page read in plain language within a day. It flags the figures that do not add up and the questions worth asking. A qualified person traces every flag back to the source page before it reaches the board.</p></div><span class="xhonest">The limit: AI can misread a table and can miss things. It does not replace an auditor. Every figure is checked against the page it came from.</span></div><h3>Telecom</h3><div class="guide-ba"><div class="g-row"><div class="k">Before</div><p>A manager spends two hours turning a long incident report into an update for leadership. And an expert\'s process knowledge lives only in his head, so the team is stuck when he is away.</p></div><div class="g-row after"><div class="k">After</div><p>AI summarizes the report in minutes. It turns the expert\'s rough notes into a written procedure the whole team can follow. The manager edits for accuracy.</p></div><span class="xhonest">The limit: subscriber data never goes into a public tool, and a person owns any decision that touches a customer.</span></div><h3>Logistics and shipping</h3><div class="guide-ba"><div class="g-row"><div class="k">Before</div><p>Staff retype the same shipping documents again and again. Customers call to ask where their goods are, because no one sent an update.</p></div><div class="g-row after"><div class="k">After</div><p>AI drafts and checks the documents against the booking. It writes clear tracking and delay notices in plain language. A person verifies before anything goes out.</p></div><span class="xhonest">The limit: a person checks documents and figures before they reach a customer or a port.</span></div>'],
+    ['num'=>'03','title'=>'A short demonstration','content'=>'<p>The best way to understand AI is to see it, not read about it. Here is one real example, the kind your team does many times a day.</p><p>A manager needs to tell a buyer that a shipment is late. He is busy, and English is his second language. He types a rough note, mixing Bangla and English.</p><div class="demo"><div class="io in"><div class="k">What the manager types</div><p>Buyer ke janate hobe. Shipment 5 din late, fabric supplier deri korse. Sorry bolte hobe, but professional thakte hobe. Notun date 20 March.</p></div><div class="io out"><div class="k">What the tool returns, in seconds</div><p>Dear [Buyer], I am writing to let you know that your shipment will be delayed by five days, due to a delay from our fabric supplier. I am sorry for the inconvenience. The revised dispatch date is 20 March, and we are tracking it closely to avoid any further slippage. Please let me know if you would like a call to discuss.</p></div></div><p>The manager reads it, fixes the date if it is wrong, and sends. Two minutes, not twenty. The judgment stayed with him. The speed came from the tool.</p>'],
+    ['num'=>'04','title'=>'What AI cannot be trusted with','content'=>'<p>This is the part most vendors skip. It is the most important part.</p><p><b>It makes things up.</b> AI will state wrong facts with full confidence. It can invent a number, a name, or a rule that sounds right and is not. Never trust a fact from AI without checking it.</p><p><b>It is weak at math and figures.</b> It can add wrong, copy a number into the wrong row, or misread a table. Treat every figure as a draft until a person confirms it.</p><p><b>It has no judgment.</b> It does not know your client, your risk, or your reputation. It cannot decide what is worth doing. It can only suggest.</p><p><b>It cannot be accountable.</b> If a tool sends a wrong quote, the tool does not answer for it. A person does. So a person must own every result that leaves your company.</p><p><b>Its knowledge is dated.</b> A public tool may not know this year\'s rules, prices, or news. It fills the gap with guesses.</p><p>None of this means AI is useless. It means AI is a fast assistant, not a decision maker. Used that way, it is a real advantage. Used the other way, it is a liability.</p>'],
+    ['num'=>'05','title'=>'The data line you must not cross','content'=>'<p>In November 2025, Bangladesh put two laws into force. The Personal Data Protection Ordinance 2025 and the National Data Governance Ordinance 2025. They change what you are allowed to do with data, and a public AI tool is exactly where companies get this wrong.</p><p>You no longer own your customers\' data by default. They do. The law makes explicit consent mandatory before you collect, store, transfer, or use a person\'s data. Confidential and restricted personal data must be stored inside Bangladesh. Sending it abroad is restricted and in many cases not allowed.</p><p>The penalties are real. Fines run from 1 to 2 percent of annual turnover for general violations, and 2 to 5 percent for large data handlers. Serious misuse carries criminal liability.</p><p>So here is a simple rule. Do not paste any of this into a public AI tool.</p><ul class="clean"><li>A person\'s name together with their ID, phone, address, salary, or financial details</li><li>Customer lists or employee records</li><li>Bank or account numbers</li><li>Anything your company marks confidential or restricted</li><li>Anything you would not email to a stranger</li></ul><span class="xhonest">This is a plain-language summary, not legal advice. Confirm the specifics with your own lawyer.</span>'],
+    ['num'=>'06','title'=>'The honest test','content'=>'<p>Before you let AI touch any task, run it through five questions.</p><ol class="test"><li>Can a person check the output before it is used? If no, stop.</li><li>Is a named person accountable for the result? If no, stop.</li><li>Is the tool using your real data, or guessing at facts? If it is guessing on facts that matter, stop.</li><li>Are you putting personal or confidential data into a public tool? If yes, stop.</li><li>If the tool is wrong, what does it cost you? Match your caution to the cost.</li></ol><p>A task that passes all five is a good place to start. A task that fails even one is a place to wait.</p>'],
+    ['num'=>'07','title'=>'One safe step you can take this month','content'=>'<p>You do not need a strategy, a budget, or a new department to begin. You need one task.</p><p>Pick a task that is repetitive, text-based, and free of personal or confidential data. Turning your own meeting notes into a clean summary works well. So does drafting the first version of a routine email.</p><p>Run it both ways, once. Do it the old way and note the time. Then do it with AI, with a person checking the output, and note that time too.</p><p>Keep the person signing off. Write down what the tool did well and what it got wrong.</p><p>That is the whole step. One task, measured, with a person in control. If it saves real time and the output holds up, do it again with a second task. This is how the companies that win with AI actually start. Slowly, and on purpose.</p>'],
+    ['num'=>'A FINAL WORD','title'=>'The difference is not the tool.','content'=>'<p>The difference between a company that gains from AI and one that gets burned is not the tool. They use the same tools. The difference is how they use them.</p><p class="guide-pull">Judgment stays with people and the speed comes from AI.</p><p>Build on that and the gains are real and the risk stays small.</p>'],
+  ];
+  foreach ($sections as $i => $s):
+    $border = $i === count($sections)-1 ? ' style="border-bottom:none"' : '';
+  ?>
+  <div class="guide-sec reveal"<?= $border ?>>
+    <div class="snum"><?= $s['num'] ?></div>
+    <h2><?= $s['title'] ?></h2>
+    <?= $s['content'] ?>
+  </div>
+  <?php endforeach; ?>
+
+  <div class="gfoot reveal">
+    <a class="wm" href="/">KNOWRA</a>
+    <p style="margin-top:10px">Responsible AI for business. Main Office, Banani, Dhaka. Project Office, Irvine, California.</p>
+    <p style="margin-top:8px">Have a problem you want an honest read on? Write to <a href="mailto:<?= SITE_EMAIL ?>"><?= SITE_EMAIL ?></a>. If AI is not the right answer, we will tell you.</p>
+    <p class="disc">This guide is for general information. It is not legal advice. Confirm any compliance question with qualified counsel.</p>
+  </div>
+</div>
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target);}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
