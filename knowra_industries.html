@@ -7,78 +7,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-<style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --bg:#f0ede4;--ink:#1a1a16;--muted:#6b6356;--green:#1a1a16;--green-d:#1a1a16;
-    --rule:#dcd4c4;--rule2:#e4ddce;--accent2:#bc5a2b;--accent:#bc5a2b;
-  }
-  body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
-  .page{max-width:660px;margin:0 auto;background:var(--bg)}
-  .serif{font-family:'Newsreader',Georgia,serif}
-  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-
-  .nav{display:flex;align-items:center;padding:20px 24px}
-  .wm{font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
-  .nav-links{margin-left:auto;display:flex;gap:17px;font-size:13px;font-weight:500;color:var(--ink)}
-  .nav-links a{opacity:.8;text-decoration:none;color:var(--ink)}
-  .nav-links a.cur{opacity:1;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:5px}
-
-  .ahero{padding:46px 24px 28px}
-  .ahero h1{font-size:38px;line-height:1.1;font-weight:800;letter-spacing:-.03em;margin:10px 0 20px}
-  .ahero .lead{font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.5;color:var(--ink);max-width:97%;margin-bottom:18px}
-  .brandline{font-size:16px;font-weight:700;letter-spacing:-.01em;color:var(--ink);padding-left:14px;border-left:3px solid var(--accent)}
-
-  .sec{padding:6px 24px 36px}
-  .ind{padding:30px 0;border-top:1px solid var(--rule)}
-  .ind h2{font-size:23px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
-  .ind p{font-family:'Newsreader',Georgia,serif;font-size:16.5px;line-height:1.55;color:var(--ink);max-width:97%;margin-bottom:14px}
-  .xhonest{display:inline-block;font-size:11.5px;font-weight:600;color:var(--accent);border:1px dashed var(--accent);border-radius:6px;padding:6px 11px;line-height:1.4}
-  .slink{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--ink);text-decoration:none}
-  .slink .sl-k{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-right:8px}
-  .slink:hover{text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px}
-
-  .rule{border:none;border-top:1px solid var(--rule);margin:0 24px}
-  .note{padding:36px 24px}
-  .note p{font-family:'Newsreader',Georgia,serif;font-size:17px;line-height:1.55;color:var(--ink);max-width:96%}
-
-  .cta{padding:52px 24px;background:var(--ink);color:#f0ede4;text-align:left;border-top:1px solid var(--rule)}
-  .cta h2{font-size:27px;font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:10px}
-  .cta p{font-family:'Newsreader',Georgia,serif;font-size:18px;color:#c9c2b5;margin-bottom:24px}
-  .btn{font-size:14px;font-weight:600;padding:12px 22px;border-radius:8px;text-decoration:none;display:inline-block}
-  .cta .btn{background:#f0ede4;color:var(--ink)}
-
-  .foot{padding:34px 24px 40px;border-top:1px solid var(--rule)}
-  .foot .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px}
-  .foot .wm{font-size:16px}
-  .foot .cols{display:flex;gap:40px;flex-wrap:wrap;font-size:13px}
-  .foot .col b{display:block;font-weight:700;margin-bottom:8px}
-  .foot .col a{display:block;color:var(--muted);text-decoration:none;margin-bottom:6px}
-  .foot .legal{margin-top:26px;font-size:11.5px;color:var(--muted)}
-
-  .fab{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;align-items:center;background:var(--ink);border:1px solid var(--ink);border-radius:999px;box-shadow:0 6px 22px rgba(26,26,22,.18);opacity:0;transform:translateY(8px);animation:fabin .5s ease .9s forwards}
-  .fab-link{display:flex;align-items:center;gap:9px;padding:11px 8px 11px 16px;text-decoration:none;color:#f0ede4;font-size:13.5px;font-weight:600}
-  .fab-link .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-  .fab-x{background:none;border:none;cursor:pointer;color:#b3ada0;font-size:16px;line-height:1;padding:9px 14px 10px 6px}
-  @keyframes fabin{to{opacity:1;transform:translateY(0)}}
-
-  @media(max-width:480px){
-    .nav-links{display:none}
-    .ahero{padding:38px 20px 24px}.ahero h1{font-size:30px}.ahero .lead{font-size:18px}
-    .sec{padding:4px 20px 30px}.note,.cta{padding:34px 20px}
-  }
-</style>
+<link rel="stylesheet" href="knowra.css">
 </head>
 <body>
 <div class="page">
 
-  <div class="nav">
-    <a class="wm" href="index.html" style="text-decoration:none">KNOWRA</a>
-    <div class="nav-links"><a href="knowra_capabilities.html">Capabilities</a><a href="knowra_showroom.html">Showroom</a><a class="cur" href="knowra_industries.html">Industries</a><a href="knowra_resources.html">Resources</a><a href="knowra_about.html">About</a><a href="knowra_contact.html">Contact</a></div>
-  </div>
+  <nav class="nav" id="nav">
+    <a class="wm" href="index.html">KNOWRA</a>
+    <div class="nav-links">
+      <a href="knowra_capabilities.html">Capabilities</a>
+      <a href="knowra_showroom.html">Showroom</a>
+      <a class="cur" href="knowra_industries.html">Industries</a>
+      <a href="knowra_resources.html">Resources</a>
+      <a href="knowra_about.html">About</a>
+      <a href="knowra_contact.html">Contact</a>
+    </div>
+  </nav>
 
   <div class="ahero">
-    <div class="eyebrow">Industries</div>
+    <span class="eyebrow">Industries</span>
     <h1>Where we work.</h1>
     <p class="lead">We focus on a few sectors where business in Bangladesh actually happens, and where we know the work. The approach is the same in each: start with a real friction, prove the value, and stay honest about what AI cannot do.</p>
     <p class="brandline">Judgment stays with people and the speed comes from AI.</p>
@@ -86,63 +33,68 @@
 
   <div class="sec">
 
-    <div class="ind">
+    <div class="ind reveal">
       <h2>Apparel and textiles</h2>
       <p>Your day runs on two languages and demanding overseas buyers, and speed often wins the order. AI bridges Bangla and English both ways, turns a tech pack into a same-day costing, and assembles clean compliance packs for audits.</p>
       <div><span class="xhonest">Buyer-facing numbers come only from your real rates, and a person signs before anything is sent.</span></div>
-      <div><a class="slink" href="knowra_showroom.html#ex1"><span class="sl-k">In the showroom</span>Sourcing a suit order, from California to Dhaka &rarr;</a></div>
+      <div style="margin-top:14px"><a class="slink" href="knowra_showroom.html#ex1"><span class="sl-k">In the showroom</span>Sourcing a suit order, from California to Dhaka →</a></div>
     </div>
 
-    <div class="ind">
+    <div class="ind reveal">
       <h2>Financial services and audit</h2>
       <p>You hold sensitive data and answer to regulators, so caution comes first. You also sit on filings and data nobody has time to read. AI turns long reports into short, plain-language briefs that flag risk, and drafts memos, letters, and standard explanations.</p>
       <div><span class="xhonest">Client data stays out of public tools. Every figure is traced to the source, and a person reviews before it reaches a board or a regulator.</span></div>
-      <div><a class="slink" href="knowra_showroom.html#ex2"><span class="sl-k">In the showroom</span>A two-page forensic read of a quarterly report &rarr;</a></div>
+      <div style="margin-top:14px"><a class="slink" href="knowra_showroom.html#ex2"><span class="sl-k">In the showroom</span>A two-page forensic read of a quarterly report →</a></div>
     </div>
 
-    <div class="ind">
+    <div class="ind reveal">
       <h2>Telecom</h2>
       <p>Your company may already run AI at scale. The gap is what a manager can do at the desk today. AI summarizes long reports, drafts clear communication, and turns process knowledge into procedures the whole team can follow.</p>
       <div><span class="xhonest">Subscriber data stays out of public tools, and a person owns every decision that touches a customer.</span></div>
-      <div><a class="slink" href="knowra_showroom.html#ex4"><span class="sl-k">In the showroom</span>One expert's know-how, turned into a procedure &rarr;</a></div>
+      <div style="margin-top:14px"><a class="slink" href="knowra_showroom.html#ex4"><span class="sl-k">In the showroom</span>One expert's know-how, turned into a procedure →</a></div>
     </div>
 
-    <div class="ind">
+    <div class="ind reveal">
       <h2>Logistics and shipping</h2>
       <p>The work is heavy on documents and constant customer updates. AI drafts and checks shipping paperwork, writes clear tracking and delay notices, and turns operational know-how into procedures every branch can follow.</p>
       <div><span class="xhonest">A person verifies documents and figures before they reach a customer or a port.</span></div>
-      <div><a class="slink" href="knowra_showroom.html#ex4"><span class="sl-k">In the showroom</span>One expert's know-how, turned into a procedure &rarr;</a></div>
+      <div style="margin-top:14px"><a class="slink" href="knowra_showroom.html#ex4"><span class="sl-k">In the showroom</span>One expert's know-how, turned into a procedure →</a></div>
     </div>
 
   </div>
 
   <hr class="rule">
 
-  <div class="note">
+  <div class="note-band reveal">
     <p>Not on this list? Tell us your sector and the friction you want gone. If we are not the right fit, we will say so.</p>
   </div>
 
-  <div class="cta">
+  <div class="cta reveal">
     <h2>See your sector here?</h2>
     <p>Tell us the friction you want gone. We will give you an honest view of whether AI can help, and how, before you spend anything.</p>
-    <a class="btn" href="knowra_contact.html">Talk to a person</a>
+    <a class="btn light" href="knowra_contact.html">Talk to a person</a>
   </div>
 
   <div class="foot">
-    <div class="top"><a class="wm" href="index.html" style="text-decoration:none">KNOWRA</a></div>
+    <div class="top"><a class="wm" href="index.html">KNOWRA</a></div>
     <div class="cols">
       <div class="col"><b>Explore</b><a href="knowra_capabilities.html">Capabilities</a><a href="knowra_showroom.html">Showroom</a><a href="knowra_industries.html">Industries</a></div>
       <div class="col"><b>Resources</b><a href="knowra_honest_guide.html">The honest guide</a><a href="#">Writing</a><a href="#">Case studies</a></div>
       <div class="col"><b>Company</b><a href="knowra_about.html">About</a><a href="knowra_contact.html">Contact</a></div>
     </div>
-    <div class="legal">KNOWRA &middot; Dhaka &amp; Irvine &middot; Responsible AI for business</div>
-  </div>
-
-  <div class="fab" id="knowra-fab">
-    <a class="fab-link" href="knowra_contact.html"><span class="dot"></span>Talk to a person</a>
-    <button class="fab-x" aria-label="Dismiss" onclick="document.getElementById('knowra-fab').style.display='none'">&times;</button>
+    <div class="legal">KNOWRA · Dhaka &amp; Irvine · Responsible AI for business</div>
   </div>
 
 </div>
+<div class="fab" id="knowra-fab">
+  <a class="fab-link" href="knowra_contact.html"><span class="dot"></span>Talk to a person</a>
+  <button class="fab-x" aria-label="Dismiss" onclick="document.getElementById('knowra-fab').style.display='none'">×</button>
+</div>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20));
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target);}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>

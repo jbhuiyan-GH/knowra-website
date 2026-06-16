@@ -7,96 +7,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-<style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --bg:#f0ede4;--ink:#1a1a16;--muted:#6b6356;--green:#1a1a16;--green-d:#1a1a16;
-    --rule:#dcd4c4;--rule2:#e4ddce;--accent2:#bc5a2b;--accent:#bc5a2b;
-  }
-  body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
-  .page{max-width:660px;margin:0 auto;background:var(--bg)}
-  .serif{font-family:'Newsreader',Georgia,serif}
-  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-
-  .nav{display:flex;align-items:center;padding:20px 24px}
-  .wm{font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
-  .nav-links{margin-left:auto;display:flex;gap:17px;font-size:13px;font-weight:500;color:var(--ink)}
-  .nav-links a{opacity:.8;text-decoration:none;color:var(--ink)}
-  .nav-links a.cur{opacity:1;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:5px}
-
-  .ahero{padding:46px 24px 26px}
-  .ahero h1{font-size:38px;line-height:1.1;font-weight:800;letter-spacing:-.03em;margin:10px 0 20px}
-  .ahero .lead{font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.5;color:var(--ink);max-width:97%;margin-bottom:18px}
-  .brandline{font-size:16px;font-weight:700;letter-spacing:-.01em;color:var(--ink);padding-left:14px;border-left:3px solid var(--accent)}
-
-  .sec{padding:6px 24px 36px}
-  .exhibit{padding:34px 0;border-top:1px solid var(--rule)}
-  .exhibit .xtag{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
-  .exhibit h2{font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1.16;margin-bottom:5px}
-  .exhibit .ctx{font-size:12.5px;color:var(--muted);margin-bottom:14px}
-  .exhibit .prob{font-family:'Newsreader',Georgia,serif;font-size:16.5px;line-height:1.55;color:var(--ink);margin-bottom:20px;max-width:97%}
-
-  .pipe{margin:0 0 18px}
-  .pnode{border:1px solid var(--rule);border-radius:9px;padding:13px 15px;background:#e7e0d1}
-  .pnode .pk{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
-  .pnode .pv{font-size:15px;font-weight:600;letter-spacing:-.01em}
-  .pnode.out{border-color:var(--accent)}
-  .pnode.out .pv{color:var(--accent)}
-  .ptag{display:inline-block;margin-top:9px;font-size:11.5px;font-weight:600;color:var(--accent);border:1px dashed var(--accent);border-radius:6px;padding:3px 9px}
-  .pconn{text-align:center;color:var(--muted);font-size:17px;line-height:1;padding:7px 0}
-
-  .ba{display:flex;gap:10px;margin-bottom:16px}
-  .ba .col{flex:1;border:1px solid var(--rule);border-radius:9px;padding:13px 14px;background:#e7e0d1}
-  .ba .col .k{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .ba .col.after .k{color:var(--accent)}
-  .ba .col .v{font-family:'Newsreader',Georgia,serif;font-size:14.5px;line-height:1.45;color:var(--ink)}
-
-  .xout{font-size:18px;font-weight:800;letter-spacing:-.01em;margin-bottom:14px}
-  .xout .ar{color:var(--accent);margin:0 6px}
-  .xhonest{display:inline-block;font-size:11.5px;font-weight:600;color:var(--accent);border:1px dashed var(--accent);border-radius:6px;padding:6px 11px;line-height:1.4}
-
-  .rule{border:none;border-top:1px solid var(--rule);margin:0 24px}
-  .note{padding:36px 24px}
-  .note p{font-family:'Newsreader',Georgia,serif;font-size:17px;line-height:1.55;color:var(--ink);max-width:96%}
-
-  .cta{padding:52px 24px;background:var(--ink);color:#f0ede4;text-align:left;border-top:1px solid var(--rule)}
-  .cta h2{font-size:27px;font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:10px}
-  .cta p{font-family:'Newsreader',Georgia,serif;font-size:18px;color:#c9c2b5;margin-bottom:24px}
-  .btn{font-size:14px;font-weight:600;padding:12px 22px;border-radius:8px;text-decoration:none;display:inline-block}
-  .cta .btn{background:#f0ede4;color:var(--ink)}
-
-  .foot{padding:34px 24px 40px;border-top:1px solid var(--rule)}
-  .foot .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px}
-  .foot .wm{font-size:16px}
-  .foot .cols{display:flex;gap:40px;flex-wrap:wrap;font-size:13px}
-  .foot .col b{display:block;font-weight:700;margin-bottom:8px}
-  .foot .col a{display:block;color:var(--muted);text-decoration:none;margin-bottom:6px}
-  .foot .legal{margin-top:26px;font-size:11.5px;color:var(--muted)}
-
-  .fab{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;align-items:center;background:var(--ink);border:1px solid var(--ink);border-radius:999px;box-shadow:0 6px 22px rgba(26,26,22,.18);opacity:0;transform:translateY(8px);animation:fabin .5s ease .9s forwards}
-  .fab-link{display:flex;align-items:center;gap:9px;padding:11px 8px 11px 16px;text-decoration:none;color:#f0ede4;font-size:13.5px;font-weight:600}
-  .fab-link .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-  .fab-x{background:none;border:none;cursor:pointer;color:#b3ada0;font-size:16px;line-height:1;padding:9px 14px 10px 6px}
-  @keyframes fabin{to{opacity:1;transform:translateY(0)}}
-
-  @media(max-width:480px){
-    .nav-links{display:none}
-    .ahero{padding:38px 20px 22px}.ahero h1{font-size:30px}.ahero .lead{font-size:18px}
-    .sec{padding:4px 20px 30px}.note,.cta{padding:34px 20px}
-    .ba{flex-direction:column}
-  }
-</style>
+<link rel="stylesheet" href="knowra.css">
 </head>
 <body>
 <div class="page">
 
-  <div class="nav">
-    <a class="wm" href="index.html" style="text-decoration:none">KNOWRA</a>
-    <div class="nav-links"><a href="knowra_capabilities.html">Capabilities</a><a class="cur" href="knowra_showroom.html">Showroom</a><a href="knowra_industries.html">Industries</a><a href="knowra_resources.html">Resources</a><a href="knowra_about.html">About</a><a href="knowra_contact.html">Contact</a></div>
-  </div>
+  <nav class="nav" id="nav">
+    <a class="wm" href="index.html">KNOWRA</a>
+    <div class="nav-links">
+      <a href="knowra_capabilities.html">Capabilities</a>
+      <a class="cur" href="knowra_showroom.html">Showroom</a>
+      <a href="knowra_industries.html">Industries</a>
+      <a href="knowra_resources.html">Resources</a>
+      <a href="knowra_about.html">About</a>
+      <a href="knowra_contact.html">Contact</a>
+    </div>
+  </nav>
 
   <div class="ahero">
-    <div class="eyebrow">Showroom</div>
+    <span class="eyebrow">Showroom</span>
     <h1>See what we build.</h1>
     <p class="lead">Representative examples of the work we take on. We show you the problem, the result, and how the workflow keeps AI honest. We do not publish the recipe, and a person signs every output.</p>
     <p class="brandline">Judgment stays with people and the speed comes from AI.</p>
@@ -104,59 +33,59 @@
 
   <div class="sec">
 
-    <div class="exhibit" id="ex1">
+    <div class="exhibit reveal" id="ex1">
       <div class="xtag">Documents and quotes</div>
       <h2>Sourcing a suit order, from California to Dhaka</h2>
-      <div class="ctx">Buyer in California &middot; suit factory in Dhaka</div>
+      <div class="ctx">Buyer in California · suit factory in Dhaka</div>
       <p class="prob">A buyer sends a tech pack and needs an FOB quote. Today it runs through a merchandiser, a sourcing team, and a manager over about a week, and the buyer often moves on to whoever answered first.</p>
       <div class="pipe">
         <div class="pnode"><div class="pk">Input</div><div class="pv">Tech pack from the buyer</div></div>
-        <div class="pconn" aria-hidden="true">&darr;</div>
+        <div class="pconn">↓</div>
         <div class="pnode"><div class="pk">AI</div><div class="pv">Reads it and drafts the costing</div><span class="ptag">Uses only your rate tables, never a guess</span></div>
-        <div class="pconn" aria-hidden="true">&darr;</div>
+        <div class="pconn">↓</div>
         <div class="pnode"><div class="pk">Check</div><div class="pv">A merchandiser reviews and signs</div></div>
-        <div class="pconn" aria-hidden="true">&darr;</div>
+        <div class="pconn">↓</div>
         <div class="pnode out"><div class="pk">Output</div><div class="pv">Accurate FOB quote, same day</div></div>
       </div>
-      <div class="xout">About a week <span class="ar">&rarr;</span> the same day</div>
+      <div class="xout">About a week <span class="ar">→</span> the same day</div>
     </div>
 
-    <div class="exhibit" id="ex2">
+    <div class="exhibit reveal" id="ex2">
       <div class="xtag">Decision and risk intelligence</div>
       <h2>A two-page forensic read of a quarterly report</h2>
-      <div class="ctx">Listed company &middot; managing director or board</div>
+      <div class="ctx">Listed company · managing director or board</div>
       <p class="prob">A director gets two hundred pages of accounts and needs to know one thing. Are the numbers sound, and is the dividend safe. The honest answer used to mean trusting management, or paying for a months-long audit.</p>
       <div class="ba">
         <div class="col"><div class="k">Before</div><div class="v">200 pages, weeks of work, or simply taking management's word for it.</div></div>
         <div class="col after"><div class="k">After</div><div class="v">A two-page brief in 48 hours: the risks, the anomalies, and the questions to ask in the meeting.</div></div>
       </div>
-      <div class="xout">200 pages <span class="ar">&rarr;</span> 2 pages, in 48 hours</div>
+      <div class="xout">200 pages <span class="ar">→</span> 2 pages, in 48 hours</div>
       <span class="xhonest">Every figure is traced to the filing. A person reviews before it reaches the board.</span>
     </div>
 
-    <div class="exhibit" id="ex3">
+    <div class="exhibit reveal" id="ex3">
       <div class="xtag">Bilingual communication</div>
       <h2>An audit-ready pack in clean English, from mixed-language records</h2>
-      <div class="ctx">Apparel factory &middot; buyer and compliance audits</div>
+      <div class="ctx">Apparel factory · buyer and compliance audits</div>
       <p class="prob">Records arrive in a mix of Bangla and English. Preparing a clean, consistent English pack for a buyer's compliance audit eats days, and it still reads rough.</p>
       <div class="ba">
         <div class="col"><div class="k">Before</div><div class="v">Mixed Bangla and English notes, inconsistent terms, days of manual rewriting.</div></div>
         <div class="col after"><div class="k">After</div><div class="v">One clean, consistent English pack, terms aligned, ready for the auditor.</div></div>
       </div>
-      <div class="xout">Days of rewriting <span class="ar">&rarr;</span> a few hours</div>
+      <div class="xout">Days of rewriting <span class="ar">→</span> a few hours</div>
       <span class="xhonest">AI does not invent facts. Every claim is checked against the source record, and a person signs the pack.</span>
     </div>
 
-    <div class="exhibit" id="ex4">
+    <div class="exhibit reveal" id="ex4">
       <div class="xtag">Knowledge and process</div>
       <h2>One expert's know-how, turned into a procedure every branch can follow</h2>
-      <div class="ctx">Telecom or logistics &middot; operations across many sites</div>
+      <div class="ctx">Telecom or logistics · operations across many sites</div>
       <p class="prob">The fix lives in one senior person's head. When they are away, the branch waits, and quality drifts from site to site.</p>
       <div class="ba">
         <div class="col"><div class="k">Before</div><div class="v">Knowledge trapped with one expert. Different results at every branch.</div></div>
         <div class="col after"><div class="k">After</div><div class="v">A clear, step-by-step procedure every branch follows, with the expert's judgment built in.</div></div>
       </div>
-      <div class="xout">One expert <span class="ar">&rarr;</span> every branch</div>
+      <div class="xout">One expert <span class="ar">→</span> every branch</div>
       <span class="xhonest">AI drafts the procedure. The expert reviews, corrects, and owns it.</span>
     </div>
 
@@ -164,31 +93,36 @@
 
   <hr class="rule">
 
-  <div class="note">
+  <div class="note-band reveal">
     <p>Every exhibit here is representative. The version we build for you runs on your data, fits your workflow, and the result belongs to you.</p>
   </div>
 
-  <div class="cta">
+  <div class="cta reveal">
     <h2>Want to see one built for your business?</h2>
     <p>Tell us the problem. We will show you what the workflow would look like, honestly, before you commit to anything.</p>
-    <a class="btn" href="knowra_contact.html">Talk to a person</a>
+    <a class="btn light" href="knowra_contact.html">Talk to a person</a>
   </div>
 
   <div class="foot">
-    <div class="top"><a class="wm" href="index.html" style="text-decoration:none">KNOWRA</a></div>
+    <div class="top"><a class="wm" href="index.html">KNOWRA</a></div>
     <div class="cols">
       <div class="col"><b>Explore</b><a href="knowra_capabilities.html">Capabilities</a><a href="knowra_showroom.html">Showroom</a><a href="knowra_industries.html">Industries</a></div>
       <div class="col"><b>Resources</b><a href="knowra_honest_guide.html">The honest guide</a><a href="#">Writing</a><a href="#">Case studies</a></div>
       <div class="col"><b>Company</b><a href="knowra_about.html">About</a><a href="knowra_contact.html">Contact</a></div>
     </div>
-    <div class="legal">KNOWRA &middot; Dhaka &amp; Irvine &middot; Responsible AI for business</div>
-  </div>
-
-  <div class="fab" id="knowra-fab">
-    <a class="fab-link" href="knowra_contact.html"><span class="dot"></span>Talk to a person</a>
-    <button class="fab-x" aria-label="Dismiss" onclick="document.getElementById('knowra-fab').style.display='none'">&times;</button>
+    <div class="legal">KNOWRA · Dhaka &amp; Irvine · Responsible AI for business</div>
   </div>
 
 </div>
+<div class="fab" id="knowra-fab">
+  <a class="fab-link" href="knowra_contact.html"><span class="dot"></span>Talk to a person</a>
+  <button class="fab-x" aria-label="Dismiss" onclick="document.getElementById('knowra-fab').style.display='none'">×</button>
+</div>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20));
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target);}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>

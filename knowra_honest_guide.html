@@ -7,118 +7,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="knowra.css">
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --bg:#f0ede4;--ink:#1a1a16;--muted:#6b6356;
-    --rule:#dcd4c4;--rule2:#e4ddce;--accent:#bc5a2b;--oat:#e7e0d1;--paper:#faf8f2;
-  }
-  body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
-  .page{max-width:660px;margin:0 auto;background:var(--bg);padding:0 24px 56px}
-  .serif{font-family:'Newsreader',Georgia,serif}
-  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-  p{margin-bottom:14px;max-width:97%}
-  .lead-serif{font-family:'Newsreader',Georgia,serif}
-
-  /* masthead */
-  .mast{display:flex;align-items:center;padding:22px 0 18px;border-bottom:2px solid var(--ink);margin-bottom:6px}
-  .wm{font-size:19px;font-weight:800;letter-spacing:-.02em}
-  .mast .tag{margin-left:auto;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:5px;padding:3px 9px}
-
-  /* title block */
-  .title{padding:36px 0 26px;border-bottom:1px solid var(--rule)}
-  .title h1{font-size:36px;line-height:1.12;font-weight:800;letter-spacing:-.03em;margin-bottom:16px}
-  .title .sub{font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.45;color:var(--ink);margin-bottom:14px}
-  .title .aud{font-size:13.5px;color:var(--muted)}
-
-  /* opener */
-  .opener{padding:26px 0;border-bottom:1px solid var(--rule)}
-  .opener p{font-family:'Newsreader',Georgia,serif;font-size:17px;line-height:1.55}
-  .opener p:last-child{margin-bottom:0}
-
-  /* sections */
-  section{padding:30px 0;border-bottom:1px solid var(--rule)}
-  .snum{font-family:'Hanken Grotesk';font-size:12px;font-weight:800;color:var(--accent);letter-spacing:.04em;margin-bottom:7px}
-  h2{font-size:24px;line-height:1.18;font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
-  h3{font-size:16.5px;font-weight:700;letter-spacing:-.01em;margin:20px 0 9px}
-  section p{font-size:15.5px;line-height:1.58}
-  .src{font-size:12px;color:var(--muted);margin-top:4px}
-  p b,li b{font-weight:700}
-
-  /* before/after card */
-  .ba{background:var(--oat);border:1px solid var(--rule);border-radius:11px;padding:18px 18px 16px;margin:14px 0}
-  .ba .row{margin-bottom:12px}
-  .ba .row:last-of-type{margin-bottom:0}
-  .ba .k{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-  .ba .row.after .k{color:var(--accent)}
-  .ba .row p{font-family:'Newsreader',Georgia,serif;font-size:14.8px;line-height:1.5;margin:0}
-  .xhonest{display:block;margin-top:14px;font-size:12px;font-weight:600;color:var(--accent);border:1px dashed var(--accent);border-radius:7px;padding:9px 12px;line-height:1.45}
-
-  /* demonstration input/output */
-  .demo{margin:16px 0}
-  .io{border-radius:10px;padding:15px 16px;margin-bottom:12px}
-  .io .k{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
-  .io.in{background:var(--paper);border:1px solid var(--rule)}
-  .io.in .k{color:var(--muted)}
-  .io.out{background:var(--oat);border:1px solid var(--rule);border-left:3px solid var(--accent)}
-  .io.out .k{color:var(--accent)}
-  .io p{font-family:'Newsreader',Georgia,serif;font-size:14.8px;line-height:1.55;margin:0;color:var(--ink)}
-  .io.in p{font-style:italic;color:#5f584c}
-
-  /* lists */
-  ul.clean{list-style:none;margin:6px 0 14px}
-  ul.clean li{position:relative;padding:7px 0 7px 20px;font-size:15px;line-height:1.5;border-bottom:1px solid var(--rule2)}
-  ul.clean li:last-child{border-bottom:none}
-  ul.clean li::before{content:"";position:absolute;left:0;top:15px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
-
-  ol.test{list-style:none;counter-reset:t;margin:8px 0 6px}
-  ol.test li{position:relative;counter-increment:t;padding:11px 0 11px 38px;font-size:15px;line-height:1.5;border-bottom:1px solid var(--rule2)}
-  ol.test li:last-child{border-bottom:none}
-  ol.test li::before{content:counter(t);position:absolute;left:0;top:10px;width:24px;height:24px;background:var(--ink);color:var(--bg);border-radius:50%;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
-
-  .pull{font-size:18px;font-weight:700;letter-spacing:-.01em;line-height:1.4;padding-left:16px;border-left:3px solid var(--accent);margin:6px 0}
-
-  /* footer */
-  .gfoot{padding:30px 0 0}
-  .gfoot .wm{font-size:17px;margin-bottom:8px}
-  .gfoot p{font-size:13.5px;color:var(--muted);line-height:1.55}
-  .gfoot a{color:var(--ink);font-weight:600;text-decoration-color:var(--accent);text-underline-offset:3px}
-  .gfoot .disc{font-size:11.5px;color:var(--muted);margin-top:14px;font-style:italic}
-
-  @media(max-width:480px){
-    .page{padding:0 20px 44px}
-    .title h1{font-size:29px}.title .sub{font-size:18px}
-    h2{font-size:21px}
-  }
-  @media print{
-    body,.page{background:var(--bg)}
-    .ba,.io,.title{break-inside:avoid}
-    h2,h3{break-after:avoid}
-    .ba,.io.out,.mast .tag,ol.test li::before{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  }
+  .guide-page{max-width:720px;margin:0 auto;padding:0 28px 60px}
+  @media(max-width:480px){.guide-page{padding:0 18px 44px}}
+  @media print{body,.guide-page{background:#f9f8f5}.guide-ba,.io,.guide-title{break-inside:avoid}h2,h3{break-after:avoid}}
 </style>
 </head>
 <body>
-<div class="page">
+<div class="guide-page">
 
   <div class="mast">
-    <a class="wm" href="index.html" style="text-decoration:none">KNOWRA</a>
+    <a class="wm" href="index.html">KNOWRA</a>
     <div class="tag">Free guide</div>
   </div>
 
-  <div class="title">
+  <div class="guide-title reveal">
     <h1>The Honest Guide to AI for Bangladeshi Business</h1>
     <p class="sub">What it can do, what it cannot, and how to begin without risking what you have built.</p>
     <p class="aud">Written for middle and senior managers at medium and large companies in Bangladesh.</p>
   </div>
 
-  <div class="opener">
+  <div class="opener reveal">
     <p>This is not a sales pitch. It will not tell you that AI changes everything.</p>
     <p>A lot of what you read about AI is hype. This is the plain version. By the end you will know where AI genuinely helps a company like yours, where it cannot be trusted, what the new data laws mean for you, and one safe step you can take this month.</p>
     <p>If AI is not the right answer for a problem you have, we will say so. That is the whole idea behind this guide.</p>
   </div>
 
-  <section>
+  <div class="guide-sec reveal">
     <div class="snum">01</div>
     <h2>Where things actually stand</h2>
     <p>PwC surveyed 45 Bangladeshi CEOs between September and November 2025. The picture is honest and useful.</p>
@@ -126,45 +42,45 @@
     <p>But adoption across the whole company is still rare. Fewer than one in five CEOs believe their AI tools can even reach all the relevant company data. About 40 percent have a clear AI plan. The rest are guessing.</p>
     <p>The global numbers tell the same story. Most companies that tried AI have not yet seen a real financial return. The few that have are the ones that built proper foundations first, with clear rules and clean data.</p>
     <p>The lesson is simple. AI rewards the companies that start small, do it right, and keep a person in control. It punishes the ones that rush.</p>
-    <p class="src">Source: PwC 29th CEO Survey, Bangladesh Edition, 2026.</p>
-  </section>
+    <p class="guide-src">Source: PwC 29th CEO Survey, Bangladesh Edition, 2026.</p>
+  </div>
 
-  <section>
+  <div class="guide-sec reveal">
     <div class="snum">02</div>
     <h2>Where AI genuinely helps</h2>
     <p>AI is good at one kind of work. It reads and writes language fast, and it turns messy input into clean output. That covers a large part of an office day.</p>
     <p>Here is what that looks like in four sectors, told as before and after.</p>
 
     <h3>Apparel and textiles</h3>
-    <div class="ba">
-      <div class="row"><div class="k">Before</div><p>A buyer in California sends a tech pack and asks for an FOB quote. Your merchandiser reads it, emails suppliers for fabric and trim prices, waits, builds a costing by hand, and sends a quote a week later. By then the buyer has often moved on.</p></div>
-      <div class="row after"><div class="k">After</div><p>The tool reads the tech pack, pulls costs from your own rate tables, and drafts a costing the same day. A merchandiser checks the numbers against the real rates and signs. The quote goes out in hours.</p></div>
+    <div class="guide-ba">
+      <div class="g-row"><div class="k">Before</div><p>A buyer in California sends a tech pack and asks for an FOB quote. Your merchandiser reads it, emails suppliers for fabric and trim prices, waits, builds a costing by hand, and sends a quote a week later. By then the buyer has often moved on.</p></div>
+      <div class="g-row after"><div class="k">After</div><p>The tool reads the tech pack, pulls costs from your own rate tables, and drafts a costing the same day. A merchandiser checks the numbers against the real rates and signs. The quote goes out in hours.</p></div>
       <span class="xhonest">The limit: the tool never invents a price. It uses only your rate tables, and a person signs every quote before it leaves.</span>
     </div>
 
     <h3>Financial services and audit</h3>
-    <div class="ba">
-      <div class="row"><div class="k">Before</div><p>A director gets 200 pages of quarterly accounts before a board meeting. There is no time to read it. He trusts management, or pays for a long review.</p></div>
-      <div class="row after"><div class="k">After</div><p>AI produces a two-page read in plain language within a day. It flags the figures that do not add up and the questions worth asking. A qualified person traces every flag back to the source page before it reaches the board.</p></div>
+    <div class="guide-ba">
+      <div class="g-row"><div class="k">Before</div><p>A director gets 200 pages of quarterly accounts before a board meeting. There is no time to read it. He trusts management, or pays for a long review.</p></div>
+      <div class="g-row after"><div class="k">After</div><p>AI produces a two-page read in plain language within a day. It flags the figures that do not add up and the questions worth asking. A qualified person traces every flag back to the source page before it reaches the board.</p></div>
       <span class="xhonest">The limit: AI can misread a table and can miss things. It does not replace an auditor. Every figure is checked against the page it came from.</span>
     </div>
 
     <h3>Telecom</h3>
-    <div class="ba">
-      <div class="row"><div class="k">Before</div><p>A manager spends two hours turning a long incident report into an update for leadership. And an expert's process knowledge lives only in his head, so the team is stuck when he is away.</p></div>
-      <div class="row after"><div class="k">After</div><p>AI summarizes the report in minutes. It turns the expert's rough notes into a written procedure the whole team can follow. The manager edits for accuracy.</p></div>
+    <div class="guide-ba">
+      <div class="g-row"><div class="k">Before</div><p>A manager spends two hours turning a long incident report into an update for leadership. And an expert's process knowledge lives only in his head, so the team is stuck when he is away.</p></div>
+      <div class="g-row after"><div class="k">After</div><p>AI summarizes the report in minutes. It turns the expert's rough notes into a written procedure the whole team can follow. The manager edits for accuracy.</p></div>
       <span class="xhonest">The limit: subscriber data never goes into a public tool, and a person owns any decision that touches a customer.</span>
     </div>
 
     <h3>Logistics and shipping</h3>
-    <div class="ba">
-      <div class="row"><div class="k">Before</div><p>Staff retype the same shipping documents again and again. Customers call to ask where their goods are, because no one sent an update.</p></div>
-      <div class="row after"><div class="k">After</div><p>AI drafts and checks the documents against the booking. It writes clear tracking and delay notices in plain language. A person verifies before anything goes out.</p></div>
+    <div class="guide-ba">
+      <div class="g-row"><div class="k">Before</div><p>Staff retype the same shipping documents again and again. Customers call to ask where their goods are, because no one sent an update.</p></div>
+      <div class="g-row after"><div class="k">After</div><p>AI drafts and checks the documents against the booking. It writes clear tracking and delay notices in plain language. A person verifies before anything goes out.</p></div>
       <span class="xhonest">The limit: a person checks documents and figures before they reach a customer or a port.</span>
     </div>
-  </section>
+  </div>
 
-  <section>
+  <div class="guide-sec reveal">
     <div class="snum">03</div>
     <h2>A short demonstration</h2>
     <p>The best way to understand AI is to see it, not read about it. Here is one real example, the kind your team does many times a day.</p>
@@ -180,9 +96,9 @@
       </div>
     </div>
     <p>The manager reads it, fixes the date if it is wrong, and sends. Two minutes, not twenty. The judgment stayed with him. The speed came from the tool.</p>
-  </section>
+  </div>
 
-  <section>
+  <div class="guide-sec reveal">
     <div class="snum">04</div>
     <h2>What AI cannot be trusted with</h2>
     <p>This is the part most vendors skip. It is the most important part.</p>
@@ -192,15 +108,14 @@
     <p><b>It cannot be accountable.</b> If a tool sends a wrong quote, the tool does not answer for it. A person does. So a person must own every result that leaves your company.</p>
     <p><b>Its knowledge is dated.</b> A public tool may not know this year's rules, prices, or news. It fills the gap with guesses.</p>
     <p>None of this means AI is useless. It means AI is a fast assistant, not a decision maker. Used that way, it is a real advantage. Used the other way, it is a liability.</p>
-  </section>
+  </div>
 
-  <section>
+  <div class="guide-sec reveal">
     <div class="snum">05</div>
     <h2>The data line you must not cross</h2>
     <p>In November 2025, Bangladesh put two laws into force. The Personal Data Protection Ordinance 2025 and the National Data Governance Ordinance 2025. They change what you are allowed to do with data, and a public AI tool is exactly where companies get this wrong.</p>
-    <p>Here is the plain version.</p>
-    <p>You no longer own your customers' data by default. They do. The law makes explicit consent mandatory before you collect, store, transfer, or use a person's data. It sorts personal data into four levels, from open to restricted. Confidential and restricted personal data must be stored inside Bangladesh. Sending it abroad, which is what happens when you paste it into most public AI tools, is restricted and in many cases not allowed.</p>
-    <p>The penalties are real. Fines run from 1 to 2 percent of annual turnover for general violations, and 2 to 5 percent for large data handlers. Serious misuse carries criminal liability. Both company leaders and the employees who handled the data can be held responsible.</p>
+    <p>You no longer own your customers' data by default. They do. The law makes explicit consent mandatory before you collect, store, transfer, or use a person's data. Confidential and restricted personal data must be stored inside Bangladesh. Sending it abroad, which is what happens when you paste it into most public AI tools, is restricted and in many cases not allowed.</p>
+    <p>The penalties are real. Fines run from 1 to 2 percent of annual turnover for general violations, and 2 to 5 percent for large data handlers. Serious misuse carries criminal liability.</p>
     <p>So here is a simple rule. Do not paste any of this into a public AI tool.</p>
     <ul class="clean">
       <li>A person's name together with their ID, phone, address, salary, or financial details</li>
@@ -210,11 +125,10 @@
       <li>Anything you would not email to a stranger</li>
     </ul>
     <p>What is safe is general work that carries no personal or confidential data. Your own meeting notes. A routine email with the names removed. A public document you want summarized.</p>
-    <p>When you must work with real data, two paths are safer. Remove the names and numbers first, and refer to "the customer" instead. Or use a tool that keeps your data private, does not train on it, and is set up properly for business use. When in doubt, ask a person who knows the rule.</p>
     <span class="xhonest">This is a plain-language summary, not legal advice. The National Data Governance Authority will publish detailed rules. Confirm the specifics with your own lawyer.</span>
-  </section>
+  </div>
 
-  <section>
+  <div class="guide-sec reveal">
     <div class="snum">06</div>
     <h2>The honest test</h2>
     <p>Before you let AI touch any task, run it through five questions.</p>
@@ -226,9 +140,9 @@
       <li>If the tool is wrong, what does it cost you? Match your caution to the cost.</li>
     </ol>
     <p>A task that passes all five is a good place to start. A task that fails even one is a place to wait.</p>
-  </section>
+  </div>
 
-  <section>
+  <div class="guide-sec reveal">
     <div class="snum">07</div>
     <h2>One safe step you can take this month</h2>
     <p>You do not need a strategy, a budget, or a new department to begin. You need one task.</p>
@@ -236,23 +150,27 @@
     <p>Run it both ways, once. Do it the old way and note the time. Then do it with AI, with a person checking the output, and note that time too.</p>
     <p>Keep the person signing off. Write down what the tool did well and what it got wrong.</p>
     <p>That is the whole step. One task, measured, with a person in control. If it saves real time and the output holds up, do it again with a second task. This is how the companies that win with AI actually start. Slowly, and on purpose.</p>
-  </section>
+  </div>
 
-  <section style="border-bottom:none">
+  <div class="guide-sec reveal" style="border-bottom:none">
     <div class="snum">A FINAL WORD</div>
     <h2>The difference is not the tool.</h2>
     <p>The difference between a company that gains from AI and one that gets burned is not the tool. They use the same tools. The difference is how they use them.</p>
-    <p class="pull">Judgment stays with people and the speed comes from AI.</p>
+    <p class="guide-pull">Judgment stays with people and the speed comes from AI.</p>
     <p>Build on that and the gains are real and the risk stays small.</p>
-  </section>
+  </div>
 
-  <div class="gfoot">
-    <a class="wm" href="index.html" style="text-decoration:none">KNOWRA</a>
-    <p>Responsible AI for business. Main Office, Banani, Dhaka. Project Office, Irvine, California.</p>
+  <div class="gfoot reveal">
+    <a class="wm" href="index.html">KNOWRA</a>
+    <p style="margin-top:10px">Responsible AI for business. Main Office, Banani, Dhaka. Project Office, Irvine, California.</p>
     <p style="margin-top:8px">Have a problem you want an honest read on? Write to <a href="mailto:nowshad@getknowra.com">nowshad@getknowra.com</a>. If AI is not the right answer, we will tell you.</p>
     <p class="disc">This guide is for general information. It is not legal advice. Confirm any compliance question with qualified counsel.</p>
   </div>
 
 </div>
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target);}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>
