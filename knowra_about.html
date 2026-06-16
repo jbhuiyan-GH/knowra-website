@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KNOWRA · About</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#f0ede4;--ink:#1a1a16;--muted:#6b6356;--green:#1a1a16;--green-d:#1a1a16;
+    --rule:#dcd4c4;--rule2:#e4ddce;--accent2:#bc5a2b;--accent:#bc5a2b;
+  }
+  body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .page{max-width:660px;margin:0 auto;background:var(--bg)}
+  .serif{font-family:'Newsreader',Georgia,serif}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+  .nav{display:flex;align-items:center;padding:20px 24px}
+  .wm{font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+  .nav-links{margin-left:auto;display:flex;gap:18px;font-size:13px;font-weight:500;color:var(--ink)}
+  .nav-links a{opacity:.8;text-decoration:none;color:var(--ink)}
+  .nav-links a.cur{opacity:1;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:5px}
+
+  .ahero{padding:46px 24px 36px}
+  .ahero h1{font-size:40px;line-height:1.08;font-weight:800;letter-spacing:-.03em;margin:10px 0 22px}
+  .ahero p{font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;color:var(--ink);margin-bottom:16px;max-width:97%}
+
+  .mv{margin-top:26px}
+  .mv .row{padding:16px 0;border-top:1px solid var(--rule)}
+  .mv .k{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .mv .v{font-family:'Newsreader',Georgia,serif;font-size:18.5px;line-height:1.45;color:var(--ink)}
+
+  .rule{border:none;border-top:1px solid var(--rule);margin:0 24px}
+  .sec{padding:44px 24px}
+  .sec h2{font-size:25px;line-height:1.14;font-weight:800;letter-spacing:-.02em;margin:12px 0 6px}
+
+  .items{margin-top:10px}
+  .item{padding:18px 0;border-top:1px solid var(--rule2)}
+  .item:last-child{border-bottom:1px solid var(--rule2)}
+  .item h3{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:5px}
+  .item p{font-family:'Newsreader',Georgia,serif;font-size:16.5px;line-height:1.5;color:var(--muted)}
+
+  .statement{padding:52px 24px;border-top:1px solid var(--rule)}
+  .statement p{font-size:27px;line-height:1.26;font-weight:500;letter-spacing:-.01em;max-width:94%}
+  .statement .g{color:var(--accent)}
+
+  .whoami{font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.6;color:var(--ink);max-width:97%}
+
+  .people{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+  .pcard{border:1px solid var(--rule);border-radius:9px;padding:16px 17px;background:#e7e0d1}
+  .pcard .pname{font-size:16px;font-weight:700;letter-spacing:-.01em}
+  .pcard .prole{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:3px 0 9px}
+  .pcard .pbio{font-family:'Newsreader',Georgia,serif;font-size:15px;line-height:1.5;color:var(--muted)}
+  .pnote{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:14px}
+
+  .cta{padding:52px 24px;background:var(--ink);color:#f0ede4;text-align:left;border-top:1px solid var(--rule)}
+  .cta h2{font-size:27px;font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:10px}
+  .cta p{font-family:'Newsreader',Georgia,serif;font-size:18px;color:#c9c2b5;margin-bottom:24px}
+  .btn{font-size:14px;font-weight:600;padding:12px 22px;border-radius:8px;text-decoration:none;display:inline-block}
+  .cta .btn{background:#f0ede4;color:var(--ink)}
+
+  .foot{padding:34px 24px 40px;border-top:1px solid var(--rule)}
+  .foot .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px}
+  .foot .wm{font-size:16px}
+  .foot .cols{display:flex;gap:40px;flex-wrap:wrap;font-size:13px}
+  .foot .col b{display:block;font-weight:700;margin-bottom:8px}
+  .foot .col a{display:block;color:var(--muted);text-decoration:none;margin-bottom:6px}
+  .foot .legal{margin-top:26px;font-size:11.5px;color:var(--muted)}
+
+  @media(max-width:480px){
+    .nav-links{display:none}
+    .ahero{padding:38px 20px 30px}.ahero h1{font-size:32px}.ahero p{font-size:18px}
+    .sec,.statement{padding:36px 20px}.statement p{font-size:23px}
+    .cta{padding:40px 20px}
+  }
+  .fab{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;align-items:center;background:var(--ink);border:1px solid var(--ink);border-radius:999px;box-shadow:0 6px 22px rgba(26,26,22,.18);opacity:0;transform:translateY(8px);animation:fabin .5s ease .9s forwards}
+  .fab-link{display:flex;align-items:center;gap:9px;padding:11px 8px 11px 16px;text-decoration:none;color:#f0ede4;font-size:13.5px;font-weight:600}
+  .fab-link .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .fab-x{background:none;border:none;cursor:pointer;color:#b3ada0;font-size:16px;line-height:1;padding:9px 14px 10px 6px}
+  @keyframes fabin{to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="nav">
+    <a class="wm" href="index.html" style="text-decoration:none">KNOWRA</a>
+    <div class="nav-links"><a href="knowra_capabilities.html">Capabilities</a><a href="knowra_showroom.html">Showroom</a><a href="knowra_industries.html">Industries</a><a href="knowra_resources.html">Resources</a><a class="cur" href="knowra_about.html">About</a><a href="knowra_contact.html">Contact</a></div>
+  </div>
+
+  <div class="ahero">
+    <div class="eyebrow">About KNOWRA</div>
+    <h1>Why we exist</h1>
+    <p>AI is going to reshape how Bangladeshi businesses work. That is not in question. The only question is whether they move into it well or badly.</p>
+    <p>Most firms here do not have the in-house expertise to tell the difference, and the market around them is loud. Their data, their clients' trust, their people's jobs, and real money are all on the line. Someone will guide this transition for them.</p>
+    <p>We are building the firm that guides it honestly, protects the business and its people, and treats responsible adoption not as a feature, but as the whole point. Responsible adoption is not the slower path. It is the one that lasts. Trust is what compounds.</p>
+
+    <div class="mv">
+      <div class="row">
+        <div class="k">Our mission</div>
+        <div class="v">We help Bangladesh's businesses adopt AI they can trust, to gain its advantages without risking what they have built.</div>
+      </div>
+      <div class="row">
+        <div class="k">Our vision</div>
+        <div class="v">To be the most trusted AI services company for medium and large businesses in Bangladesh.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="sec">
+    <div class="eyebrow">What we believe</div>
+    <h2>Our principles, in plain words.</h2>
+    <div class="items">
+      <div class="item"><h3>Responsibility comes first, because it works.</h3><p>Careful adoption avoids the costly mistakes, the data leak, the wrong decision, the lost client, that quietly undo the gains.</p></div>
+      <div class="item"><h3>We are honest about what AI can and cannot do.</h3><p>We state the limits as plainly as the gains. A business cannot make a good decision on half the picture.</p></div>
+      <div class="item"><h3>A person stays accountable.</h3><p>AI assists. People decide and answer for the result, to their board, their customers, and their regulator.</p></div>
+      <div class="item"><h3>We build for the long term.</h3><p>We want to serve a business for a decade, not close a deal this quarter. That changes how we behave today.</p></div>
+    </div>
+  </div>
+
+  <div class="statement">
+    <p class="serif">We protect what our clients value. Their data, their reputation, and their people's future are <span class="g">not ours to gamble.</span></p>
+  </div>
+
+  <div class="sec">
+    <div class="eyebrow">Who we are</div>
+    <h2>Nineteen years of B2B services, now turned to AI.</h2>
+    <p class="whoami">We are a B2B services team that spent nineteen years building and running services for large organizations, mostly in telecom. We learned how to deliver work that keeps clients coming back, and how to stay accountable when the result matters. We are now doing the same with AI, for businesses in Bangladesh. We work from Dhaka, with a base in Irvine, California.</p>
+  </div>
+
+  <hr class="rule">
+
+  <div class="sec">
+    <div class="eyebrow">The people</div>
+    <h2>Who you will work with.</h2>
+    <div class="people">
+      <div class="pcard"><div class="pname">Nowshad</div><div class="prole">Leadership and Customer Experience</div><div class="pbio">Nineteen years building and running B2B services for telecom operators. He leads the work and is the person accountable for every result that leaves the firm.</div></div>
+      <div class="pcard"><div class="pname">Shoeb</div><div class="prole">Chief AI Officer</div><div class="pbio">The person you talk to first. He listens for the real problem before anyone mentions AI.</div></div>
+      <div class="pcard"><div class="pname">Jahir</div><div class="prole">Chief AI Builder</div><div class="pbio">Based in Dhaka. He designs and builds each workflow, and makes it reliable enough to trust.</div></div>
+    </div>
+    <div class="pnote">Photos go here once you choose them. Human, not corporate.</div>
+  </div>
+
+  <div class="cta">
+    <h2>Useful before we ask for anything.</h2>
+    <p>Read the honest guide, or tell us a problem you are working on. No selling.</p>
+    <a class="btn" href="knowra_honest_guide.html">Read the honest guide</a>
+  </div>
+
+  <div class="foot">
+    <div class="top"><a class="wm" href="index.html" style="text-decoration:none">KNOWRA</a></div>
+    <div class="cols">
+      <div class="col"><b>Explore</b><a href="knowra_capabilities.html">Capabilities</a><a href="knowra_showroom.html">Showroom</a><a href="knowra_industries.html">Industries</a></div>
+      <div class="col"><b>Resources</b><a href="knowra_honest_guide.html">The honest guide</a><a href="#">Writing</a><a href="#">Case studies</a></div>
+      <div class="col"><b>Company</b><a href="knowra_about.html">About</a><a href="knowra_contact.html">Contact</a></div>
+    </div>
+    <div class="legal">KNOWRA &middot; Dhaka &amp; Irvine &middot; Responsible AI for business</div>
+  </div>
+
+</div>
+  <div class="fab" id="knowra-fab">
+    <a class="fab-link" href="knowra_contact.html"><span class="dot"></span>Talk to a person</a>
+    <button class="fab-x" aria-label="Dismiss" onclick="document.getElementById('knowra-fab').style.display='none'">&times;</button>
+  </div>
+</body>
+</html>
