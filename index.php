@@ -43,12 +43,6 @@ if ($is_ajax) {
     exit;
 }
 
-// Honest guide has its own layout
-if ($view === 'honest_guide') {
-    require $view_file;
-    exit;
-}
-
 require __DIR__ . '/includes/header.php';
 echo '<div id="content">';
 require $view_file;

@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?= htmlspecialchars($page_title) ?></title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/knowra.css">
 <style>.guide-page{max-width:720px;margin:0 auto;padding:0 28px 60px}@media(max-width:480px){.guide-page{padding:0 18px 44px}}</style>
-</head>
-<body>
 <div class="guide-page">
   <div class="mast">
     <a class="wm" href="/">KNOWRA</a>
@@ -54,9 +42,3 @@
     <p class="disc">This guide is for general information. It is not legal advice. Confirm any compliance question with qualified counsel.</p>
   </div>
 </div>
-<script>
-const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target);}}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
-</body>
-</html>

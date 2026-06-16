@@ -187,7 +187,7 @@ async function navigate(path, hash) {
 
     const [data] = await Promise.all([promise, new Promise(r => setTimeout(r, 160))]);
 
-    if (!data || data.view === 'honest_guide') { window.location.href = path; return; }
+    if (!data) { window.location.href = path; return; }
 
     content.innerHTML = data.html;
     document.title    = data.title;
