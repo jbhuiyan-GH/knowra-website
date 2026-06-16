@@ -30,7 +30,6 @@
   <button class="fab-x" aria-label="Dismiss" onclick="document.getElementById('knowra-fab').style.display='none'">&times;</button>
 </div>
 
-<!-- Top progress bar -->
 <div id="nprogress"></div>
 
 <script>
@@ -38,7 +37,9 @@
 const bar = document.getElementById('nprogress');
 let barTimer, barVal = 0;
 function barStart() {
-  barVal = 0; bar.style.transform = 'scaleX(0)'; bar.classList.add('running');
+  barVal = 0;
+  bar.style.transform = 'scaleX(0)';
+  bar.classList.add('running');
   barTimer = setInterval(() => {
     barVal = Math.min(barVal + (0.9 - barVal) * 0.12, 0.88);
     bar.style.transform = `scaleX(${barVal})`;
@@ -50,23 +51,31 @@ function barDone() {
   setTimeout(() => { bar.classList.remove('running'); bar.style.transform = 'scaleX(0)'; }, 400);
 }
 
-// ── NAV SETUP ──
-const nav = document.getElementById('nav');
-const burger = document.getElementById('nav-burger');
+// ── NAV ──
+const nav        = document.getElementById('nav');
+const burger     = document.getElementById('nav-burger');
 const mobileMenu = document.getElementById('mobile-menu');
-const content = document.getElementById('content');
+const content    = document.getElementById('content');
+const navLinks   = document.querySelector('.nav-links');
 
-// Scroll shadow
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
 
-// Mobile burger
+// Mobile burger toggle
 burger?.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
-  burger.classList.toggle('open');
+  const open = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
 });
 
-// ── SLIDING NAV PILL ──
-const navLinks = document.querySelector('.nav-links');
+// Close mobile menu on outside click
+document.addEventListener('click', e => {
+  if (mobileMenu?.classList.contains('open') && !nav.contains(e.target) && !mobileMenu.contains(e.target)) {
+    mobileMenu.classList.remove('open');
+    burger?.classList.remove('open');
+  }
+});
+
+// ── SLIDING PILL ──
 const pill = document.createElement('div');
 pill.className = 'nav-pill';
 navLinks?.appendChild(pill);
@@ -75,13 +84,8 @@ function movePill(el) {
   if (!el || !navLinks) return;
   const nr = navLinks.getBoundingClientRect();
   const er = el.getBoundingClientRect();
-  pill.style.left   = (er.left - nr.left) + 'px';
-  pill.style.top    = (er.top  - nr.top)  + 'px';
-  pill.style.width  = er.width  + 'px';
-  pill.style.height = er.height + 'px';
-  pill.style.opacity = '1';
+  pill.style.cssText = `left:${er.left-nr.left}px;top:${er.top-nr.top}px;width:${er.width}px;height:${er.height}px;opacity:1`;
 }
-
 function hidePill() { pill.style.opacity = '0'; }
 
 navLinks?.querySelectorAll('a').forEach(a => {
@@ -92,31 +96,29 @@ navLinks?.addEventListener('mouseleave', () => {
   const cur = navLinks.querySelector('a.cur');
   cur ? movePill(cur) : hidePill();
 });
-navLinks?.addEventListener('focusout', e => {
-  if (!navLinks.contains(e.relatedTarget)) {
-    const cur = navLinks.querySelector('a.cur');
-    cur ? movePill(cur) : hidePill();
-  }
-});
 
-// Init pill on current
 const initCur = navLinks?.querySelector('a.cur');
-if (initCur) { pill.style.transition = 'none'; movePill(initCur); requestAnimationFrame(() => pill.style.transition = ''); }
-else hidePill();
+if (initCur) {
+  pill.style.transition = 'none';
+  movePill(initCur);
+  requestAnimationFrame(() => { pill.style.transition = ''; });
+} else hidePill();
 
 // ── KEYBOARD NAV ──
 navLinks?.addEventListener('keydown', e => {
   const links = [...navLinks.querySelectorAll('a')];
   const idx = links.indexOf(document.activeElement);
-  if (e.key === 'ArrowRight' && idx < links.length - 1) { e.preventDefault(); links[idx + 1].focus(); }
-  if (e.key === 'ArrowLeft'  && idx > 0)                { e.preventDefault(); links[idx - 1].focus(); }
+  if (e.key === 'ArrowRight' && idx < links.length - 1) { e.preventDefault(); links[idx+1].focus(); }
+  if (e.key === 'ArrowLeft'  && idx > 0)                { e.preventDefault(); links[idx-1].focus(); }
 });
 
 // ── SCROLL REVEAL ──
 function initReveal() {
   const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-  }, { threshold: 0.1 });
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
 }
 initReveal();
@@ -124,51 +126,43 @@ initReveal();
 // ── PREFETCH CACHE ──
 const cache = new Map();
 function prefetch(path) {
-  const base = path.split('#')[0];
-  if (cache.has(base)) return;
-  cache.set(base, fetch(base, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
-    .then(r => r.json()).catch(() => null));
+  if (cache.has(path)) return;
+  const p = fetch(path, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+    .then(r => r.json()).catch(() => null);
+  cache.set(path, p);
 }
-
-// Prefetch on hover/focus
-document.addEventListener('mouseover', e => {
-  const a = e.target.closest('a[href]');
-  if (a && isInternal(a.href)) prefetch(new URL(a.href).pathname);
-});
-document.addEventListener('focusin', e => {
-  const a = e.target.closest('a[href]');
-  if (a && isInternal(a.href)) prefetch(new URL(a.href).pathname);
-});
 
 function isInternal(href) {
   try {
     const u = new URL(href, location.origin);
-    return u.origin === location.origin &&
-      !href.startsWith('mailto') && !href.startsWith('tel') &&
-      !href.startsWith('#') && u.pathname !== '#';
+    return u.origin === location.origin && !href.startsWith('mailto') && !href.startsWith('tel');
   } catch { return false; }
 }
 
-// ── NAV ACTIVE STATE ──
-function setActiveNav(pathname) {
-  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
-    const match = a.getAttribute('href') === pathname;
-    a.classList.toggle('cur', match);
-  });
-  movePill(navLinks?.querySelector('a.cur') || null);
-  if (!navLinks?.querySelector('a.cur')) hidePill();
-}
+document.addEventListener('mouseover', e => {
+  const a = e.target.closest('a[href]');
+  if (a && isInternal(a.href)) {
+    const u = new URL(a.href);
+    if (u.pathname !== '#') prefetch(u.pathname);
+  }
+});
 
-// ── CONTENT SWAP ──
+// ── ACTIVE NAV ──
+let currentPath = '/';
 const NAV_ORDER = ['/', '/capabilities', '/showroom', '/industries', '/resources', '/about', '/contact', '/honest-guide'];
 
-async function navigate(path, push = true) {
-  const [pathname, hash] = path.split('#');
+function setActiveNav(path) {
+  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
+    a.classList.toggle('cur', a.getAttribute('href') === path);
+  });
+  const cur = navLinks?.querySelector('a.cur');
+  cur ? movePill(cur) : hidePill();
+}
 
-  // Same page — just scroll to hash
-  if (pathname === location.pathname && hash) {
-    const target = document.getElementById(hash);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+// ── NAVIGATE ──
+async function navigate(path, hash) {
+  if (path === currentPath && hash) {
+    scrollToHash(hash);
     return;
   }
 
@@ -176,59 +170,51 @@ async function navigate(path, push = true) {
   burger?.classList.remove('open');
   barStart();
 
-  // Direction for slide
-  const fromIdx = NAV_ORDER.indexOf(location.pathname);
-  const toIdx   = NAV_ORDER.indexOf(pathname);
+  // Directional slide
+  const fromIdx = NAV_ORDER.indexOf(currentPath);
+  const toIdx   = NAV_ORDER.indexOf(path);
   const dir     = toIdx >= fromIdx ? 1 : -1;
 
-  // Animate out
-  content.style.transition = 'opacity .2s ease, transform .2s ease';
+  content.style.transition = 'opacity .18s ease, transform .18s ease';
   content.style.opacity    = '0';
-  content.style.transform  = `translateX(${dir * -24}px)`;
+  content.style.transform  = `translateX(${dir * -20}px)`;
 
   try {
-    const base = pathname;
-    const promise = cache.has(base)
-      ? cache.get(base)
-      : fetch(base, { headers: { 'X-Requested-With': 'XMLHttpRequest' } }).then(r => r.json());
-    cache.set(base, promise);
+    const promise = cache.has(path)
+      ? cache.get(path)
+      : fetch(path, { headers: { 'X-Requested-With': 'XMLHttpRequest' } }).then(r => r.json());
+    cache.delete(path);
 
-    const data = await promise;
-    cache.delete(base); // allow fresh fetch next time
+    const [data] = await Promise.all([promise, new Promise(r => setTimeout(r, 160))]);
 
     if (!data || data.view === 'honest_guide') { window.location.href = path; return; }
 
-    await new Promise(r => setTimeout(r, 180)); // let fade-out finish
-
     content.innerHTML = data.html;
     document.title    = data.title;
-    if (push) history.pushState({ path }, data.title, path);
-    setActiveNav(pathname);
+    currentPath       = path;
 
-    // Re-run inline scripts
+    // Re-run inline scripts (count-up etc.)
     content.querySelectorAll('script').forEach(old => {
       const s = document.createElement('script');
       s.textContent = old.textContent;
       old.replaceWith(s);
     });
 
-    // Animate in from opposite direction
+    setActiveNav(path);
+
+    // Slide in from opposite side
     content.style.transition = 'none';
-    content.style.transform  = `translateX(${dir * 24}px)`;
+    content.style.transform  = `translateX(${dir * 20}px)`;
     content.style.opacity    = '0';
 
     requestAnimationFrame(() => requestAnimationFrame(() => {
-      content.style.transition = 'opacity .28s ease, transform .28s ease';
+      content.style.transition = 'opacity .26s ease, transform .26s ease';
       content.style.opacity    = '1';
       content.style.transform  = 'none';
     }));
 
-    // Scroll
     if (hash) {
-      setTimeout(() => {
-        const el = document.getElementById(hash);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 320);
+      setTimeout(() => scrollToHash(hash), 300);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -236,39 +222,44 @@ async function navigate(path, push = true) {
     initReveal();
     barDone();
 
-  } catch {
+  } catch(err) {
     barDone();
     window.location.href = path;
   }
+}
+
+function scrollToHash(hash) {
+  const el = document.getElementById(hash);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ── INTERCEPT CLICKS ──
 document.addEventListener('click', e => {
   const a = e.target.closest('a[href]');
   if (!a) return;
-  const href = a.getAttribute('href');
-  if (!href || !isInternal(a.href)) return;
-  const u = new URL(a.href);
-  const path = u.pathname + (u.hash || '');
+  const raw = a.getAttribute('href');
+  if (!raw || !isInternal(a.href)) return;
+
+  const u = new URL(a.href, location.origin);
+  const path = u.pathname;
+  const hash = u.hash ? u.hash.slice(1) : null;
+
   e.preventDefault();
-  // Same page hash-only
-  if (u.pathname === location.pathname && u.hash) {
-    const el = document.getElementById(u.hash.slice(1));
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    history.pushState({}, '', path);
+
+  // Same page hash scroll only
+  if (path === currentPath && hash) {
+    scrollToHash(hash);
     return;
   }
-  if (u.pathname !== location.pathname) navigate(path);
+
+  // Hash on same page, no path change
+  if (path === currentPath && !hash) return;
+
+  navigate(path, hash);
 });
 
-// ── BACK / FORWARD ──
-window.addEventListener('popstate', e => {
-  if (e.state?.path) navigate(e.state.path, false);
-  else navigate(location.pathname, false);
-});
-
-// Initial state
-history.replaceState({ path: location.pathname }, document.title, location.pathname);
+// ── Refresh safety: Nginx still routes to index.php ──
+// URL never changes — stays at knowra.skymapintel.com always
 </script>
 </body>
 </html>

@@ -432,50 +432,163 @@ ol.test li::before{content:counter(t);position:absolute;left:0;top:11px;width:26
 .gfoot a{color:var(--ink);font-weight:600;text-decoration-color:var(--cyan);text-underline-offset:3px}
 .gfoot .disc{font-size:11.5px;color:var(--muted);margin-top:14px;font-style:italic}
 
-/* ── RESPONSIVE ── */
-@media(max-width:768px){
-  .nav{padding:14px 20px}
-  .nav-links{gap:14px;font-size:12px}
-  .hero-dark{padding:56px 20px 52px}
-  .hero-dark h1{font-size:38px}
-  .hero-dark .lead{font-size:19px}
-  .ahero{padding:48px 20px 40px}
-  .ahero h1{font-size:34px}
-  .sec,.statement,.cta,.note-band{padding-left:20px;padding-right:20px}
-  .rule{margin:0 20px}
-  .foot{padding:36px 20px 40px}
-  .figs{gap:16px}
-  .ba{flex-direction:column}
-  .form-row{flex-direction:column;gap:0}
-  .offices{flex-direction:column;gap:0}
-}
-@media(max-width:480px){
-  .nav-links{display:none}
-  .hero-dark h1{font-size:30px}
-  .ahero h1{font-size:28px}
-  .sec h2{font-size:26px}
-  .statement p{font-size:26px}
-  .cta h2{font-size:26px}
-  .email-cap{flex-direction:column}
-  .flow{flex-direction:column}
-}
-
 /* ── CONTENT TRANSITION ── */
 #content{transition:opacity .28s ease,transform .28s ease;will-change:opacity,transform}
-#content.out{opacity:0;transform:translateY(12px)}
-#content.in{opacity:1;transform:none}
 
 /* ── MOBILE BURGER ── */
-.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:16px}
+.nav-burger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  background:none;border:none;cursor:pointer;padding:8px;margin-left:12px;
+  min-width:44px;min-height:44px;border-radius:8px;
+}
 .nav-burger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
 .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;flex-direction:column;background:rgba(249,248,245,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule);padding:12px 20px 20px;position:sticky;top:57px;z-index:99}
-@media(max-width:768px){.mobile-menu.open{display:flex}}
-.mobile-menu a{font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--rule2)}
-.mobile-menu a.cur{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
-@media(max-width:768px){.nav-burger{display:flex}.nav-links{display:none}}
+
+/* Mobile dropdown menu */
+.mobile-menu{
+  display:none;
+  position:sticky;top:57px;z-index:99;
+  flex-direction:column;
+  background:rgba(249,248,245,.97);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--rule);
+  padding:8px 16px 16px;
+  box-shadow:0 8px 32px rgba(0,0,0,.08);
+}
+.mobile-menu a{
+  font-size:16px;font-weight:500;color:var(--ink);
+  text-decoration:none;padding:13px 4px;
+  border-bottom:1px solid var(--rule2);
+  min-height:44px;display:flex;align-items:center;
+  transition:padding-left .2s;
+}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover{padding-left:8px}
+.mobile-menu a.cur{font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── RESPONSIVE — TABLET (≤900px) ── */
+@media(max-width:900px){
+  .page{max-width:100%}
+  .nav{padding:14px 24px}
+  .nav-links{gap:6px;font-size:12.5px}
+  .nav-links a{padding:5px 9px}
+  .hero-dark{padding:64px 24px 56px}
+  .hero-dark h1{font-size:42px}
+  .ahero{padding:52px 24px 44px}
+  .ahero h1{font-size:36px}
+  .sec,.statement,.cta,.note-band,.note-band{padding-left:24px;padding-right:24px}
+  .rule{margin:0 24px}
+  .foot{padding:40px 24px 48px}
+  .foot .cols{gap:32px}
+  .figs{gap:20px}
+}
+
+/* ── RESPONSIVE — MOBILE (≤768px) ── */
+@media(max-width:768px){
+  .nav-burger{display:flex}
+  .nav-links,.nav-pill{display:none}
+  .mobile-menu.open{display:flex}
+
+  .nav{padding:12px 20px}
+  .hero-dark{padding:52px 20px 48px}
+  .hero-dark h1{font-size:36px;line-height:1.08}
+  .hero-dark .lead{font-size:18px}
+  .hero-dark .lead-note{font-size:14px}
+  .ahero{padding:44px 20px 36px}
+  .ahero h1{font-size:30px}
+  .ahero .lead{font-size:18px}
+
+  .sec{padding:40px 20px}
+  .sec h2{font-size:26px}
+  .sec h2.sm{font-size:22px}
+  .statement{padding:44px 20px}
+  .statement p{font-size:26px}
+  .cta{padding:48px 20px}
+  .cta h2{font-size:26px}
+  .cta p{font-size:16px}
+  .note-band{padding:28px 20px}
+  .rule{margin:0 20px}
+
+  .foot{padding:32px 20px 40px}
+  .foot .cols{flex-direction:column;gap:0}
+  .foot .col{padding:14px 0;border-top:1px solid rgba(255,255,255,.07)}
+  .foot .col b{margin-bottom:8px}
+  .foot .top{margin-bottom:16px}
+
+  /* Pipeline stacks nicely already, just reduce padding */
+  .pnode{padding:12px 14px}
+
+  /* BA columns stack */
+  .ba{flex-direction:column;gap:8px}
+
+  /* People cards */
+  .people{gap:10px}
+
+  /* Stats */
+  .figs{flex-direction:column;gap:20px;padding-top:20px}
+  .fig .n{font-size:36px}
+
+  /* Contact form */
+  .form-row{flex-direction:column;gap:0}
+  .offices{flex-direction:column;gap:0}
+  .office{margin-bottom:16px}
+
+  /* Chips wrap tighter */
+  .chips{gap:8px}
+  .chip{padding:7px 13px;font-size:12.5px}
+
+  /* Email capture */
+  .email-cap{flex-direction:column;gap:8px}
+  .email-cap button{width:100%}
+
+  /* Guide card */
+  .guide-card{padding:22px 18px}
+
+  /* Exhibit */
+  .exhibit h2{font-size:20px}
+
+  /* Pull quote */
+  .pull{font-size:18px}
+
+  /* FAB safe area */
+  .fab{right:16px;bottom:calc(16px + env(safe-area-inset-bottom))}
+}
+
+/* ── RESPONSIVE — SMALL MOBILE (≤480px) ── */
+@media(max-width:480px){
+  .hero-dark h1{font-size:28px}
+  .hero-dark .lead{font-size:17px}
+  .ahero h1{font-size:26px}
+  .ahero .lead{font-size:17px}
+  .sec h2{font-size:23px}
+  .sec h2.sm{font-size:20px}
+  .statement p{font-size:22px}
+  .cta h2{font-size:22px}
+  .btns{flex-direction:column;gap:10px}
+  .btn{text-align:center;width:100%;max-width:280px}
+  .hero-dark .btns .btn{max-width:100%}
+  .flow{flex-direction:column}
+  .flow-arrow{transform:rotate(90deg)}
+  .cap-item h3{font-size:19px}
+  .exhibit h2{font-size:18px}
+  .xout{font-size:16px}
+  .guide-page{padding:0 16px 44px}
+  .guide-title h1{font-size:24px}
+  .guide-sec h2{font-size:20px}
+}
+
+/* ── TOUCH TARGETS ── */
+@media(hover:none){
+  /* Ensure all interactive elements meet 44px minimum */
+  .btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center}
+  .send{min-height:48px}
+  .field input,.field select,.field textarea{font-size:16px} /* prevent iOS zoom */
+  .email-cap input{font-size:16px}
+  .chip{min-height:40px;display:inline-flex;align-items:center}
+  .fab-link{padding:14px 10px 14px 20px}
+}
 
 /* ── FORM FEEDBACK ── */
 .form-success{text-align:center;padding:48px 24px;border:1px solid rgba(34,211,238,.2);border-radius:16px;background:linear-gradient(135deg,rgba(34,211,238,.06),rgba(168,85,247,.06))}
